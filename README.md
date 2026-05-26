@@ -1,84 +1,109 @@
 # Pioneiro Pro
 
-Pioneiro Pro e uma aplicacao web criada para organizar atividades, estudantes, visitas, lembretes e metas em uma rotina de acompanhamento mais simples, visual e produtiva.
+![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-6-646CFF?logo=vite&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3-38B2AC?logo=tailwindcss&logoColor=white)
+![Status](https://img.shields.io/badge/status-active-brightgreen)
+![License](https://img.shields.io/badge/license-private-lightgrey)
 
-O projeto foi estruturado como uma solucao de apoio para planejamento, registro de progresso e acompanhamento de informacoes importantes em um unico painel.
+Pioneiro Pro e uma aplicacao web para organizar atividades, estudantes, visitas, lembretes, metas e historico de acompanhamento em uma rotina mais clara, visual e produtiva.
 
-## Visao geral
+O projeto foi desenvolvido como uma solucao de apoio operacional, com foco em organizacao de dados, registro de progresso, visualizacao rapida de informacoes importantes e evolucao futura para persistencia em backend real.
 
-A proposta do Pioneiro Pro e reduzir controles espalhados em papel, planilhas ou anotacoes soltas. A aplicacao centraliza dados essenciais e oferece uma base para acompanhar atividades, estudantes, visitas programadas, notas rapidas, objetivos e historico de progresso.
+## Visao de produto
 
-## Funcionalidades principais
+Muitas rotinas de acompanhamento acabam ficando espalhadas entre papel, planilhas, mensagens e anotacoes soltas. O Pioneiro Pro centraliza essas informacoes em um painel unico, reduzindo retrabalho e facilitando a tomada de decisao.
+
+A proposta nao e apenas registrar dados, mas transformar informacoes dispersas em uma experiencia organizada, consultavel e preparada para evoluir.
+
+## Principais capacidades
 
 - Cadastro e acompanhamento de estudantes
-- Registro de atividades e tempo
+- Registro de atividades e tempo dedicado
 - Organizacao de visitas agendadas
 - Controle de lembretes e notas rapidas
 - Checklist de objetivos por estudante
 - Painel com indicadores de acompanhamento
 - Configuracoes personalizadas da rotina
-- Interface responsiva para uso em computador e celular
+- Interface responsiva para desktop e mobile
+- Base local preparada para futura integracao com backend
 
-## Tecnologias utilizadas
+## Stack tecnica
 
-- React
-- Vite
-- Tailwind CSS
-- React Router
-- TanStack Query
-- Recharts
-- Lucide React
+| Camada | Tecnologia |
+| --- | --- |
+| Frontend | React 18 |
+| Build | Vite |
+| Estilizacao | Tailwind CSS |
+| Roteamento | React Router |
+| Estado/dados | Local client + localStorage |
+| Data fetching | TanStack Query |
+| Graficos | Recharts |
+| UI/Icons | Radix UI + Lucide React |
+| Qualidade | ESLint + TypeScript check via JSConfig |
+
+## Arquitetura
+
+```txt
+src/
+├── api/                 # Client local da aplicacao
+├── components/          # Componentes reutilizaveis
+├── hooks/               # Hooks de apoio
+├── lib/                 # Contextos, utilitarios e helpers
+├── pages/               # Paginas principais
+└── main.jsx             # Entrada da aplicacao
+```
+
+O projeto utiliza um client local em `src/api/pioneiroClient.js`. Essa camada isola o acesso aos dados e permite evoluir para uma API real sem reescrever toda a interface.
 
 ## Como executar localmente
 
-Clone o repositorio:
-
 ```bash
 git clone https://github.com/M4rc3low/pioneiro-pro-app.git
-```
-
-Acesse a pasta do projeto:
-
-```bash
 cd pioneiro-pro-app
-```
-
-Instale as dependencias:
-
-```bash
 npm install
-```
-
-Execute o ambiente de desenvolvimento:
-
-```bash
 npm run dev
 ```
 
-Gere a versao de producao:
+Build de producao:
 
 ```bash
 npm run build
-```
-
-Visualize o build localmente:
-
-```bash
 npm run preview
 ```
 
-## Roadmap
+## Scripts
 
-- [ ] Adicionar capturas reais da interface
-- [ ] Publicar uma versao demonstrativa
-- [ ] Melhorar a persistencia de dados
-- [ ] Criar relatorios de acompanhamento
-- [ ] Adicionar filtros avancados
+| Comando | Descricao |
+| --- | --- |
+| `npm run dev` | Inicia o ambiente local |
+| `npm run build` | Gera build de producao |
+| `npm run preview` | Visualiza o build local |
+| `npm run lint` | Executa analise de lint |
+| `npm run lint:fix` | Corrige problemas automaticos de lint |
+| `npm run typecheck` | Executa verificacao de tipos/configuracao |
+
+## Qualidade e seguranca
+
+- Nenhum segredo ou credencial deve ser versionado.
+- Dados reais nao devem ser usados em commits publicos.
+- A camada de dados local deve ser substituida por backend seguro em producao.
+- Antes de publicar, executar `npm run build`, `npm run lint` e `npm run typecheck`.
+
+## Roadmap tecnico
+
+- [ ] Adicionar screenshots reais da interface
+- [ ] Publicar versao demonstrativa
+- [ ] Criar persistencia em backend
+- [ ] Adicionar autenticacao real
+- [ ] Criar exportacao de relatorios
+- [ ] Implementar testes automatizados
 - [ ] Preparar deploy em ambiente de producao
+- [ ] Adicionar observabilidade e monitoramento
 
-## Objetivo profissional
+## Valor profissional
 
-Este projeto faz parte do portfolio de Marcelo Gomes e demonstra aplicacao pratica de desenvolvimento web, organizacao de dados, produtividade, dashboards e construcao de interfaces para problemas reais.
+Este projeto demonstra desenvolvimento web aplicado a um problema real: organizacao operacional, acompanhamento de dados, produtividade e construcao de uma interface util para rotina pratica.
 
 ## Autor
 
