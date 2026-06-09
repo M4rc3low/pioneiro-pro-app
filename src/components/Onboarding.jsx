@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { pioneiroApi } from "@/api/pioneiroClient";
 import { User, Church, Target, ChevronRight, BookOpen } from "lucide-react";
 import { toast } from "sonner";
@@ -24,22 +24,20 @@ export default function Onboarding({ onConcluir }) {
     setSalvando(true);
     await pioneiroApi.entities.Configuracao.create(dados);
     setSalvando(false);
-    toast.success("Bem-vindo ao Pioneiro App! ðŸŽ‰");
+    toast.success("Bem-vindo ao Pioneiro App! 🎉");
     onConcluir();
   }
 
   return (
     <div className="fixed inset-0 bg-background z-50 flex flex-col items-center justify-center px-6">
-      {/* Logo */}
       <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mb-4">
         <BookOpen size={32} className="text-primary-foreground" />
       </div>
       <h1 className="text-2xl font-bold text-foreground mb-1">Bem-vindo!</h1>
       <p className="text-sm text-muted-foreground mb-8 text-center">
-        Vamos configurar seu perfil para comeÃ§ar
+        Vamos configurar seu perfil para começar
       </p>
 
-      {/* Indicador de etapa */}
       <div className="flex gap-2 mb-8">
         {[1, 2].map(i => (
           <div key={i} className={`h-2 rounded-full transition-all ${etapa === i ? "w-8 bg-primary" : "w-2 bg-muted"}`} />
@@ -49,7 +47,7 @@ export default function Onboarding({ onConcluir }) {
       <div className="w-full max-w-sm space-y-4">
         {etapa === 1 && (
           <>
-            <p className="text-base font-semibold text-foreground">Suas informaÃ§Ãµes</p>
+            <p className="text-base font-semibold text-foreground">Suas informações</p>
             <div>
               <label className="text-xs text-muted-foreground flex items-center gap-1.5 mb-1.5">
                 <User size={12} /> Seu nome completo *
@@ -64,12 +62,12 @@ export default function Onboarding({ onConcluir }) {
             </div>
             <div>
               <label className="text-xs text-muted-foreground flex items-center gap-1.5 mb-1.5">
-                <Church size={12} /> CongregaÃ§Ã£o
+                <Church size={12} /> Congregação
               </label>
               <input
                 value={dados.congregacao}
                 onChange={e => set("congregacao", e.target.value)}
-                placeholder="Ex: CongregaÃ§Ã£o Centro"
+                placeholder="Ex: Congregação Centro"
                 className="w-full bg-muted rounded-xl px-4 py-3 text-sm text-foreground outline-none focus:ring-2 focus:ring-primary/30"
               />
             </div>
@@ -80,7 +78,7 @@ export default function Onboarding({ onConcluir }) {
               }}
               className="w-full bg-primary text-primary-foreground font-semibold py-4 rounded-2xl flex items-center justify-center gap-2 active:scale-95 transition-all"
             >
-              PrÃ³ximo <ChevronRight size={18} />
+              Próximo <ChevronRight size={18} />
             </button>
           </>
         )}
@@ -111,14 +109,14 @@ export default function Onboarding({ onConcluir }) {
               </div>
             </div>
             <p className="text-xs text-muted-foreground text-center">
-              Pioneiro regular: 50h/mÃªs â€¢ 600h/ano
+              Pioneiro regular: 50h/mês • 600h/ano
             </p>
             <button
               onClick={concluir}
               disabled={salvando}
               className="w-full bg-primary text-primary-foreground font-semibold py-4 rounded-2xl active:scale-95 transition-all disabled:opacity-60"
             >
-              {salvando ? "Salvando..." : "ComeÃ§ar a usar o app ðŸŽ‰"}
+              {salvando ? "Salvando..." : "Começar a usar o app 🎉"}
             </button>
             <button onClick={() => setEtapa(1)} className="w-full text-sm text-muted-foreground py-2">
               Voltar
