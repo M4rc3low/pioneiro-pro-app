@@ -41,7 +41,7 @@ A proposta não é apenas registrar dados, mas transformar informações dispers
 | Data fetching | TanStack Query |
 | Gráficos | Recharts |
 | UI/Icons | Radix UI + Lucide React |
-| Qualidade | ESLint + TypeScript check via JSConfig |
+| Qualidade | Smoke test + ESLint + build Vite |
 | Container | Docker |
 | CI | GitHub Actions |
 
@@ -89,17 +89,18 @@ docker run --rm -p 8080:80 pioneiro-pro-app
 | `npm run dev` | Inicia o ambiente local |
 | `npm test` | Executa smoke test estrutural |
 | `npm run lint` | Executa análise de lint |
-| `npm run typecheck` | Executa verificação de tipos/configuração |
 | `npm run build` | Gera build de produção |
 | `npm run preview` | Visualiza o build local |
 
-A pipeline de CI executa automaticamente **teste, lint, typecheck, build da aplicação e build da imagem Docker** em pushes e pull requests para `main`.
+A pipeline de CI executa automaticamente **smoke test, lint, build da aplicação e build da imagem Docker** em pushes e pull requests para `main`.
+
+> O projeto é atualmente JavaScript/JSX. A checagem estática completa de tipos não é tratada como gate obrigatório enquanto os componentes não tiverem tipagem explícita suficiente. A evolução para TypeScript/JSDoc fica registrada como melhoria técnica, sem deixar a CI artificialmente vermelha.
 
 ## Qualidade e segurança
 
 - Nenhum segredo ou credencial deve ser versionado.
 - Dados reais não devem ser usados em commits públicos.
-- Antes de integrar alterações, execute `npm test`, `npm run lint`, `npm run typecheck` e `npm run build`.
+- Antes de integrar alterações, execute `npm test`, `npm run lint` e `npm run build`.
 - A camada de dados local deve ser substituída por backend seguro em uma implantação com múltiplos usuários.
 
 ## Roadmap técnico
@@ -110,11 +111,12 @@ A pipeline de CI executa automaticamente **teste, lint, typecheck, build da apli
 - [ ] Adicionar autenticação real
 - [ ] Criar exportação de relatórios
 - [ ] Evoluir a cobertura de testes automatizados
+- [ ] Migrar módulos críticos para TypeScript ou adicionar tipagem JSDoc consistente
 - [ ] Adicionar observabilidade e monitoramento
 
 ## Valor profissional
 
-Este projeto demonstra desenvolvimento web aplicado a um problema real de organização e produtividade, junto com práticas de engenharia como **testes estruturais, CI e containerização**.
+Este projeto demonstra desenvolvimento web aplicado a um problema real de organização e produtividade, junto com práticas de engenharia como **testes estruturais, lint, CI e containerização**.
 
 ## Autor
 
