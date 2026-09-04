@@ -1,4 +1,3 @@
-﻿import { cn } from "@/lib/utils";
 import { Flame } from "lucide-react";
 
 function calcularRitmoDiario(feitas, meta, diasRestantes) {
@@ -33,7 +32,7 @@ export default function CardRitmo({ horasMes, metaMes, horasAno, metaAno, mesIni
   } else {
     fimAno = new Date(anoAtual, mesInicioAno - 1, 1);
   }
-  const diasRestantesAno = Math.max(0, Math.ceil((fimAno - hoje) / (1000 * 60 * 60 * 24)));
+  const diasRestantesAno = Math.max(0, Math.ceil((fimAno.getTime() - hoje.getTime()) / (1000 * 60 * 60 * 24)));
 
   const ritmoDia = calcularRitmoDiario(horasMes, metaMes, diasRestantesMes);
   const ritmoAno = calcularRitmoDiario(horasAno, metaAno, diasRestantesAno);

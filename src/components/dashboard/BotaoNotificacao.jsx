@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Bell, BellOff } from "lucide-react";
 import { toast } from "sonner";
 
@@ -40,7 +40,7 @@ export default function BotaoNotificacao() {
     const lembrete = new Date();
     lembrete.setHours(hora, minuto, 0, 0);
     if (lembrete <= agora) lembrete.setDate(lembrete.getDate() + 1);
-    const delay = lembrete - agora;
+    const delay = lembrete.getTime() - agora.getTime();
 
     setTimeout(() => {
       new Notification(titulo, {
@@ -62,7 +62,7 @@ export default function BotaoNotificacao() {
     const proxSexta = new Date(agora);
     proxSexta.setDate(agora.getDate() + diasParaSexta);
     proxSexta.setHours(19, 0, 0, 0);
-    const delay = proxSexta - agora;
+    const delay = proxSexta.getTime() - agora.getTime();
 
     setTimeout(() => {
       new Notification("Resumo semanal", {

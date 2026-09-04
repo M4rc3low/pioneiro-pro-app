@@ -1,0 +1,73 @@
+name: Temporary targeted typecheck fixes
+
+on:
+  push:
+    branches: [chore/repository-polish]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: chore/repository-polish
+
+      - name: Apply targeted fixes
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          replacements = {
+              "src/components/dashboard/BotaoNotificacao.jsx": [
+                  ("const delay = lembrete - agora;", "const delay = lembrete.getTime() - agora.getTime();"),
+                  ("const delay = proxSexta - agora;", "const delay = proxSexta.getTime() - agora.getTime();"),
+              ],
+              "src/components/dashboard/CardRitmo.jsx": [
+                  ("Math.ceil((fimAno - hoje) / (1000 * 60 * 60 * 24))", "Math.ceil((fimAno.getTime() - hoje.getTime()) / (1000 * 60 * 60 * 24))"),
+              ],
+              "src/components/dashboard/GraficoMeses.jsx": [
+                  ("const CustomTooltip = ({ active, payload, label }) => {", "const CustomTooltip = (props) => {\n    const { active, payload, label } = props || {};"),
+              ],
+              "src/hooks/useOfflineSync.js": [
+                  ("function abrirDB() {", "/** @returns {Promise<IDBDatabase>} */\nfunction abrirDB() {"),
+                  ("req.onupgradeneeded = (e) => {\n      e.target.result.createObjectStore(STORE, { keyPath: \"id\", autoIncrement: true });", "req.onupgradeneeded = () => {\n      req.result.createObjectStore(STORE, { keyPath: \"id\", autoIncrement: true });"),
+                  ("req.onsuccess = (e) => resolve(e.target.result);", "req.onsuccess = () => resolve(req.result);"),
+              ],
+              "src/lib/theme.jsx": [
+                  ("const ThemeContext = createContext();", "const ThemeContext = createContext({ tema: \"claro\", setTema: /** @type {any} */ (() => {}) });"),
+              ],
+              "src/components/dashboard/CardResumo.jsx": [
+                  ("export default function CardResumo({ icone: Icone, titulo, valor, sub, cor = \"slate\" }) {", "export default function CardResumo({ icone: Icone, titulo, valor, sub = \"\", cor = \"slate\" }) {"),
+              ],
+              "src/pages/Estudantes.jsx": [
+                  (" onAtualizar={setSelecionado}", ""),
+              ],
+          }
+
+          for filename, changes in replacements.items():
+              path = Path(filename)
+              text = path.read_text(encoding="utf-8-sig")
+              original = text
+              for old, new in changes:
+                  if old not in text:
+                      raise SystemExit(f"Expected text not found in {filename}: {old}")
+                  text = text.replace(old, new, 1)
+              path.write_text(text, encoding="utf-8")
+              print(f"Updated {filename}: {text != original}")
+          PY
+
+      - name: Commit fixes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "fix: resolve JavaScript typecheck errors"
+            git push origin HEAD:chore/repository-polish
+          fi

@@ -1,6 +1,6 @@
 ﻿import { useState, useEffect } from "react";
 import { pioneiroApi } from "@/api/pioneiroClient";
-import { Moon, Sun, Target, User, Church, BookOpen, Download, Upload } from "lucide-react";
+import { Moon, Sun, Target, User, Church, BookOpen, Download } from "lucide-react";
 import { useTema } from "@/lib/theme";
 import { toast } from "sonner";
 

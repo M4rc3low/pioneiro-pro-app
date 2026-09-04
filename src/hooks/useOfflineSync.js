@@ -1,17 +1,18 @@
-﻿import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { pioneiroApi } from "@/api/pioneiroClient";
 import { toast } from "sonner";
 
 const DB_NAME = "pioneiro-offline";
 const STORE = "pendentes";
 
+/** @returns {Promise<IDBDatabase>} */
 function abrirDB() {
   return new Promise((resolve, reject) => {
     const req = indexedDB.open(DB_NAME, 1);
-    req.onupgradeneeded = (e) => {
-      e.target.result.createObjectStore(STORE, { keyPath: "id", autoIncrement: true });
+    req.onupgradeneeded = () => {
+      req.result.createObjectStore(STORE, { keyPath: "id", autoIncrement: true });
     };
-    req.onsuccess = (e) => resolve(e.target.result);
+    req.onsuccess = () => resolve(req.result);
     req.onerror = () => reject(req.error);
   });
 }
