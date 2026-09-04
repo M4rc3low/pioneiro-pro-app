@@ -1,4 +1,4 @@
-﻿const CURRENT_USER_KEY = 'pioneiropro_current_user';
+const CURRENT_USER_KEY = 'pioneiropro_current_user';
 
 function getCurrentUser() {
   const saved = localStorage.getItem(CURRENT_USER_KEY);
@@ -23,8 +23,6 @@ function getCurrentUser() {
 function getCollectionKey(entityName) {
   return `pioneiropro_${entityName}`;
 }
-
-
 
 /**
  * @param {string} entityName
@@ -89,45 +87,40 @@ function createEntityApi(entityName) {
     },
 
     /**
- * @param {Record<string, any>} data
- * @returns {Promise<Record<string, any>>}
- */
-async create(data = {}) {
-  const user = getCurrentUser();
-  const items = readCollection(entityName);
+     * @param {Record<string, any>} data
+     * @returns {Promise<Record<string, any>>}
+     */
+    async create(data = {}) {
+      const user = getCurrentUser();
+      const items = readCollection(entityName);
 
-  const item = {
-    id: crypto.randomUUID(),
-    created_by: data.created_by || user.email,
-    created_date: new Date().toISOString(),
-    updated_date: new Date().toISOString(),
-    ...data
-  };
+      const item = {
+        id: crypto.randomUUID(),
+        created_by: data.created_by || user.email,
+        created_date: new Date().toISOString(),
+        updated_date: new Date().toISOString(),
+        ...data
+      };
 
-  items.push(item);
-  writeCollection(entityName, items);
-  return item;
-},
+      items.push(item);
+      writeCollection(entityName, items);
+      return item;
+    },
 
     /**
- * @param {string} id
- * @param {Record<string, any>} data
- * @returns {Promise<Record<string, any>>}
- */
-/**
- * @param {string} id
- * @param {Record<string, any>} data
- * @returns {Promise<Record<string, any> | null>}
- */
-async update(id, data = {}) {
-  const items = readCollection(entityName);
-  const updated = items.map(item =>
-    item.id === id ? { ...item, ...data, updated_date: new Date().toISOString() } : item
-  );
+     * @param {string} id
+     * @param {Record<string, any>} data
+     * @returns {Promise<Record<string, any> | null>}
+     */
+    async update(id, data = {}) {
+      const items = readCollection(entityName);
+      const updated = items.map(item =>
+        item.id === id ? { ...item, ...data, updated_date: new Date().toISOString() } : item
+      );
 
-  writeCollection(entityName, updated);
-  return updated.find(item => item.id === id) || null;
-},
+      writeCollection(entityName, updated);
+      return updated.find(item => item.id === id) || null;
+    },
 
     async delete(id) {
       writeCollection(entityName, readCollection(entityName).filter(item => item.id !== id));
@@ -146,6 +139,7 @@ async update(id, data = {}) {
   };
 }
 
+/** @type {any} */
 const entitiesProxy = new Proxy({}, {
   get(_target, entityName) {
     return createEntityApi(String(entityName));
