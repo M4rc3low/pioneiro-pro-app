@@ -1,7 +1,7 @@
 ﻿import { useState, useEffect } from "react";
 import { pioneiroApi } from "@/api/pioneiroClient";
-import { Plus, CalendarDays } from "lucide-react";
-import { format, startOfWeek, endOfWeek, addDays, parseISO, isWithinInterval } from "date-fns";
+import { Plus } from "lucide-react";
+import { format, startOfWeek, endOfWeek, parseISO, isWithinInterval } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import MiniCalendario from "@/components/calendario/MiniCalendario";
 import SemanaVisitas from "@/components/calendario/SemanaVisitas";

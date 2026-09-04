@@ -1,5 +1,5 @@
 ﻿import { useState, useEffect } from "react";
-import { Download, X, Smartphone } from "lucide-react";
+import { X, Smartphone } from "lucide-react";
 
 export default function BannerInstalar() {
   const [deferredPrompt, setDeferredPrompt] = useState(null);

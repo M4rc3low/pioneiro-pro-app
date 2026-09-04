@@ -14,7 +14,7 @@ import SugerirVisitas from "@/components/dashboard/SugerirVisitas";
 import { useOfflineSync } from "@/hooks/useOfflineSync";
 import {
   getMesAtual, getMesNome, calcularAtividadesMes,
-  calcularAtividadesAno, calcularTotalHoras, formatarHoras
+  calcularAtividadesAno, calcularTotalHoras
 } from "@/lib/utils-pioneiro";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";

@@ -1,5 +1,4 @@
-﻿import { cn } from "@/lib/utils";
-import { Flame } from "lucide-react";
+﻿import { Flame } from "lucide-react";
 
 function calcularRitmoDiario(feitas, meta, diasRestantes) {
   const faltam = Math.max(meta - feitas, 0);
