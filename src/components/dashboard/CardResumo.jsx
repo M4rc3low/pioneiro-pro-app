@@ -1,6 +1,6 @@
-﻿import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
-export default function CardResumo({ icone: Icone, titulo, valor, sub, cor = "slate" }) {
+export default function CardResumo({ icone: Icone, titulo, valor, sub = "", cor = "slate" }) {
   const cores = {
     slate: "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300",
     blue: "bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300",

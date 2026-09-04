@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { pioneiroApi } from "@/api/pioneiroClient";
 import { Plus, Search, User, Clock, Monitor, MapPin, ChevronRight, BookOpen } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -42,7 +42,7 @@ export default function Estudantes() {
   }
 
   if (tela === "detalhes" && selecionado) {
-    return <DetalhesEstudante estudante={selecionado} onEditar={() => setTela("form")} onVoltar={() => { setSelecionado(null); setTela("lista"); carregar(); }} onAtualizar={setSelecionado} />;
+    return <DetalhesEstudante estudante={selecionado} onEditar={() => setTela("form")} onVoltar={() => { setSelecionado(null); setTela("lista"); carregar(); }} />;
   }
 
   return (

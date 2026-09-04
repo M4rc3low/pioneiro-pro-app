@@ -1,4 +1,4 @@
-﻿import { ComposedChart, Bar, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine } from "recharts";
+import { ComposedChart, Bar, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine } from "recharts";
 import { getNomesMeses, getUltimosMeses, calcularAtividadesMes, calcularTotalHoras } from "@/lib/utils-pioneiro";
 
 export default function GraficoMeses({ atividades, metaMes }) {
@@ -15,7 +15,8 @@ export default function GraficoMeses({ atividades, metaMes }) {
     };
   });
 
-  const CustomTooltip = ({ active, payload, label }) => {
+  const CustomTooltip = (props) => {
+    const { active, payload, label } = props || {};
     if (active && payload && payload.length) {
       return (
         <div className="bg-card border border-border rounded-xl px-3 py-2 shadow-lg">
