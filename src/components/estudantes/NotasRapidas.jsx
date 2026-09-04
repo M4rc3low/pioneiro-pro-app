@@ -1,6 +1,6 @@
 ﻿import { useState, useEffect, useRef } from "react";
 import { pioneiroApi } from "@/api/pioneiroClient";
-import { StickyNote, Plus, Trash2, Send } from "lucide-react";
+import { StickyNote, Trash2, Send } from "lucide-react";
 import { format, parseISO } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { toast } from "sonner";

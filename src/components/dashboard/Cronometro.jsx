@@ -1,5 +1,5 @@
 ﻿import { useState, useEffect, useRef } from "react";
-import { Play, Pause, Square, Timer, CheckCircle2, X } from "lucide-react";
+import { Play, Pause, Timer, CheckCircle2, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { pioneiroApi } from "@/api/pioneiroClient";
 import { format } from "date-fns";

@@ -1,5 +1,5 @@
 ﻿import React from "react";
-import { AlertTriangle, TrendingDown, CheckCircle2, Zap, Clock } from "lucide-react";
+import { TrendingDown, CheckCircle2, Zap, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function AlertaRitmo({ horasMes, metaMes }) {

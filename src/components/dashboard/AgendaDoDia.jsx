@@ -1,6 +1,6 @@
 ﻿import { useState, useEffect } from "react";
 import { pioneiroApi } from "@/api/pioneiroClient";
-import { CalendarCheck, BookOpen, MapPin, Phone, HelpCircle, CheckCircle2, Circle } from "lucide-react";
+import { CalendarCheck, BookOpen, MapPin, Phone, HelpCircle, Circle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 
